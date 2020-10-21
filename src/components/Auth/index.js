@@ -9,7 +9,6 @@ import {
   Image,
 } from "semantic-ui-react";
 import { auth } from "../../firebase";
-import logo from "./images/image-logo.png";
 import representatorIcon from "./images/representators.png";
 
 export const Login = ({ history }) => {
@@ -59,7 +58,6 @@ export const Login = ({ history }) => {
   return (
     <Grid textAlign="center" style={{ height: "70vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Image src={logo} />
         <Header as="h1" textAlign="center">
           <Image src={representatorIcon} />
           התחברות למערכת מיוצגים
