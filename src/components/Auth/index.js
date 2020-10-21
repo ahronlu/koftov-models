@@ -20,17 +20,25 @@ export const Login = ({ history }) => {
   const [loading, setloading] = useState(false);
   const [error, setError] = useState(null);
   const [isPasswordReset, setIsPasswordReset] = useState(false);
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState("login");
 
   const submit = async () => {
     const { email, password } = user;
+    setloading(true);
+
     try {
-      if (login) {
-        setloading(true);
+      if (login === "login") {
         await auth.signInWithEmailAndPassword(email, password);
         history.push("/");
+      } else if (login === "signup") {
+        const newUser = await auth.createUserWithEmailAndPassword(
+          email,
+          password
+        );
+        return await newUser.user.updateProfile({
+          displayName: user.name,
+        });
       } else {
-        setloading(true);
         await auth.sendPasswordResetEmail(email);
         setIsPasswordReset(true);
         setError(null);
@@ -50,8 +58,8 @@ export const Login = ({ history }) => {
     });
   };
 
-  const setLoginOrForgot = () => {
-    setLogin(!login);
+  const setLoginStatus = (status) => {
+    setLogin(status);
     setIsPasswordReset(false);
   };
 
@@ -65,6 +73,17 @@ export const Login = ({ history }) => {
         <Form onSubmit={submit} size="large">
           <Segment stacked>
             <Form.Field>
+              {login === "signup" && (
+                <Form.Input
+                  onChange={changeInput}
+                  value={user.name}
+                  name="name"
+                  minLength="6"
+                  type="text"
+                  fluid
+                  placeholder="שם"
+                />
+              )}
               <Form.Input
                 onChange={changeInput}
                 value={user.email}
@@ -75,7 +94,7 @@ export const Login = ({ history }) => {
                 }
                 fluid
               />
-              {login && (
+              {login !== "forgot" && (
                 <Form.Input
                   onChange={changeInput}
                   value={user.password}
@@ -93,7 +112,7 @@ export const Login = ({ history }) => {
                 <p>בדוק את תיבת הדוא"ל שלך ופעל בהתאם להוראות</p>
                 <span
                   style={{ cursor: "pointer", fontWeight: "bold" }}
-                  onClick={setLoginOrForgot}
+                  onClick={() => setLoginStatus("login")}
                 >
                   חזרה להתחברות
                 </span>
@@ -108,17 +127,38 @@ export const Login = ({ history }) => {
             <Button
               color="blue"
               loading={loading}
-              disabled={loading || !user.email || (login && !user.password)}
+              disabled={
+                loading || !user.email || (login !== "forgot" && !user.password)
+              }
             >
-              {login ? "התחברות" : "שחזר סיסמה"}
+              {login === "login"
+                ? "התחברות"
+                : login === "signup"
+                ? "register"
+                : "שחזר סיסמה"}
             </Button>
+
+            <p
+              style={{ paddingTop: 10 }}
+              onClick={() =>
+                setLoginStatus(login === "login" ? "signup" : "login")
+              }
+            >
+              {login === "login"
+                ? "אין לך חשבון עדיין? לחץ להרשמה"
+                : login === "הרשמה"
+                ? "יש לך כבר חשבון? לחץ להתחברות"
+                : null}
+            </p>
           </Segment>
         </Form>
         <Message>
-          {login ? "שכחת סיסמה?" : "זוכר את הסיסמה?"}{" "}
+          {login === "login" ? "שכחת סיסמה?" : "זוכר את הסיסמה?"}{" "}
           <span
             style={{ cursor: "pointer", color: "green" }}
-            onClick={setLoginOrForgot}
+            onClick={() =>
+              setLoginStatus(login === "forgot" ? "login" : "forgot")
+            }
           >
             {login ? "לחץ כאן" : "חזרה להתחברות"}
           </span>
