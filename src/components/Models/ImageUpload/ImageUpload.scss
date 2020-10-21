@@ -1,0 +1,15 @@
+.ImageUpload {
+    .image-preview-segment {
+        min-height: 40vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .image-prev {
+        float: left;
+        width: 30vw;
+        height: 30vh;
+        object-fit: scale-down;
+    }
+}

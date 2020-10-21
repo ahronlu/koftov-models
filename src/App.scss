@@ -1,0 +1,64 @@
+.App {
+  font-family: "Heebo", sans-serif !important;
+  .image-prev {
+    float: left;
+    width: 30vw;
+    height: 30vh;
+    object-fit: scale-down;
+  }
+
+  input {
+    text-align: right !important;
+  }
+
+  a.ui.green.button {
+    margin: 0;
+  }
+  i.icon.check.circle.outline {
+    margin: 0 0 0 10px;
+  }
+
+  i.dropdown.icon {
+    margin-right: 0.5em !important;
+  }
+
+  #my_table {
+    word-break: break-all;
+  }
+
+  .print {
+    display: none;
+  }
+
+  .wrapped {
+    overflow-x: auto;
+  }
+  @media only screen and (max-width: 600px) {
+    button,
+    .button {
+      margin-top: 10px !important;
+    }
+  }
+}
+
+@media print {
+  .ui.segment {
+    border: 0 !important;
+    box-shadow: 0 0 black !important;
+  }
+
+  .noprint,
+  .ui.attached.menu {
+    display: none !important;
+  }
+
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  .print {
+    display: inline !important;
+    align-self: center;
+  }
+}
