@@ -152,17 +152,19 @@ export const Login = ({ history }) => {
             </p>
           </Segment>
         </Form>
-        <Message>
-          {login === "login" ? "שכחת סיסמה?" : "זוכר את הסיסמה?"}{" "}
-          <span
-            style={{ cursor: "pointer", color: "green" }}
-            onClick={() =>
-              setLoginStatus(login === "forgot" ? "login" : "forgot")
-            }
-          >
-            {login ? "לחץ כאן" : "חזרה להתחברות"}
-          </span>
-        </Message>
+        {login !== "signup" && (
+          <Message>
+            {login === "login" ? "שכחת סיסמה?" : "זוכר את הסיסמה?"}{" "}
+            <span
+              style={{ cursor: "pointer", color: "green" }}
+              onClick={() =>
+                setLoginStatus(login === "forgot" ? "login" : "forgot")
+              }
+            >
+              {login ? "לחץ כאן" : "חזרה להתחברות"}
+            </span>
+          </Message>
+        )}
       </Grid.Column>
     </Grid>
   );
