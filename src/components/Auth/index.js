@@ -134,7 +134,7 @@ export const Login = ({ history }) => {
               {login === "login"
                 ? "התחברות"
                 : login === "signup"
-                ? "register"
+                ? "הרשמה"
                 : "שחזר סיסמה"}
             </Button>
 
@@ -146,7 +146,7 @@ export const Login = ({ history }) => {
             >
               {login === "login"
                 ? "אין לך חשבון עדיין? לחץ להרשמה"
-                : login === "הרשמה"
+                : login === "signup"
                 ? "יש לך כבר חשבון? לחץ להתחברות"
                 : null}
             </p>
