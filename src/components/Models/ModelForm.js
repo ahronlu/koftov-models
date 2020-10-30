@@ -107,8 +107,8 @@ export const ModelForm = ({ history, match, modelId, updateModel }) => {
                     <option value="" disabled>
                       מין
                     </option>
-                    <option value="Male">זכר</option>
-                    <option value="Female">נקבה</option>
+                    <option value="male">זכר</option>
+                    <option value="female">נקבה</option>
                   </select>
                 </Form.Field>
                 <Form.Field required>

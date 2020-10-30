@@ -7,7 +7,6 @@ export const getCollection = async (collection, minAge, maxAge, showMore) => {
     .where("birthYear", "<=", currentYear - minAge)
     .where("birthYear", ">=", currentYear - maxAge)
     .limit(1 * showMore)
-
     .get();
 
   const docs = querySnapshot.docs.map((doc) => ({

@@ -18,12 +18,12 @@
     margin: 0 0 0 10px;
   }
 
-  i.dropdown.icon {
-    margin-right: 0.5em !important;
+  i.icon.delete {
+    color: red;
   }
 
-  #my_table {
-    word-break: break-all;
+  i.dropdown.icon {
+    margin-right: 0.5em !important;
   }
 
   .print {
@@ -55,6 +55,10 @@
   @page {
     size: auto;
     margin: 0;
+  }
+
+  .ui.celled.table tr td:first-child, .ui.celled.table tr th:first-child {
+    border-left: 1px solid rgba(34,36,38,.1)!important;
   }
 
   .print {

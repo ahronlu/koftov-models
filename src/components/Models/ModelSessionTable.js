@@ -62,7 +62,7 @@ const ModelSessionTable = ({ modelId, model }) => {
   return (
     <Segment className="wrapped" loading={loading}>
       <h1 className="print">{model.name}</h1>
-      <Table textAlign="center" id="my-table" celled>
+      <Table textAlign="center" celled>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>שם ההפקה</Table.HeaderCell>

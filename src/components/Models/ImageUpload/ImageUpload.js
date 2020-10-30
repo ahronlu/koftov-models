@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Button,
   Form,
   Grid,
   Header,
   Image,
-  Input,
   Segment,
 } from "semantic-ui-react";
 import { db, storage } from "../../../firebase";
@@ -14,6 +13,7 @@ import "./ImageUpload.scss";
 export const ImageUpload = ({ modelId, setModel, model }) => {
   const [image, setImage] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const fileInput = useRef()
 
   const onFileChange = (e) => {
     setImage(e.target.files[0]);
@@ -45,8 +45,9 @@ export const ImageUpload = ({ modelId, setModel, model }) => {
         <Header>בחר תמונה</Header>
         <Form onSubmit={onSubmit}>
           <Form.Group>
-            <Form.Field width={10}>
-              <Input name="fileInput" type="file" onChange={onFileChange} />
+            <Form.Field>
+            <input ref={fileInput} style={{display:"none"}} type="file" onChange={onFileChange} width={5}/>
+            <Button onClick={e => console.log(fileInput.current.click())}>בחר קובץ</Button>
             </Form.Field>
             <Form.Field width={6}>
               <Grid columns={2} divided>

@@ -15,6 +15,8 @@ import modelAvatar from "./images/model-avatar.png";
 import { ImageUpload } from "./ImageUpload/ImageUpload";
 import { ModelForm } from "./ModelForm";
 import ModelSessionTable from "./ModelSessionTable";
+import { Documents } from "./Documents";
+
 
 export const ModelDetailsPage = ({ match, history }) => {
   const [model, setModel] = useState(null);
@@ -73,6 +75,14 @@ export const ModelDetailsPage = ({ match, history }) => {
       ),
     },
     {
+      menuItem: "מסמכים",
+      render: () => (
+        <Tab.Pane>
+          <Documents modelId={modelId} />
+        </Tab.Pane>
+      ),
+    },
+    {
       menuItem: "מחק",
       render: () => (
         <Tab.Pane>
@@ -110,7 +120,7 @@ export const ModelDetailsPage = ({ match, history }) => {
                             </Grid.Column>
                             <Grid.Column width={10} verticalAlign="middle">
                               <h3>
-                                {model.gender === "Male" ? "זכר" : "נקבה"}
+                                {model.gender === "male" ? "זכר" : "נקבה"}
                               </h3>
                               <h3>{model.phone}</h3>
                               <h3>{model.city}</h3>
@@ -153,11 +163,9 @@ export const ModelDetailsPage = ({ match, history }) => {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
-                </Header>
-              </Segment>
+                </Header>              </Segment>
+
               <Tab
-                as={Grid}
-                stackable
                 menu={{ attached: true, className: "wrapped" }}
                 panes={panes}
               />
