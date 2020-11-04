@@ -137,9 +137,8 @@ export const Login = ({ history }) => {
                 ? "הרשמה"
                 : "שחזר סיסמה"}
             </Button>
-
             <p
-              style={{ paddingTop: 10 }}
+              style={{ paddingTop: 10, cursor: "pointer" }}
               onClick={() =>
                 setLoginStatus(login === "login" ? "signup" : "login")
               }
