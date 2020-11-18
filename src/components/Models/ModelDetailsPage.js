@@ -14,9 +14,8 @@ import { PageLoader } from "../Ui";
 import modelAvatar from "./images/model-avatar.png";
 import { ImageUpload } from "./ImageUpload/ImageUpload";
 import { ModelForm } from "./ModelForm";
-import ModelSessionTable from "./ModelSessionTable";
 import { Documents } from "./Documents";
-
+import ModelSessionTable from "./ModelSessionTable";
 
 export const ModelDetailsPage = ({ match, history }) => {
   const [model, setModel] = useState(null);
@@ -104,7 +103,7 @@ export const ModelDetailsPage = ({ match, history }) => {
             <>
               <Segment className="noprint" placeholder>
                 <Header>
-                  <Grid columns={2} stackable divided>
+                  <Grid columns={2} divided>
                     <Grid.Row>
                       <Grid.Column width={10}>
                         <Divider horizontal>
@@ -120,10 +119,11 @@ export const ModelDetailsPage = ({ match, history }) => {
                             </Grid.Column>
                             <Grid.Column width={10} verticalAlign="middle">
                               <h3>
-                                {model.gender === "male" ? "זכר" : "נקבה"}
+                                {model.gender.toLowerCase() === "male"
+                                  ? "זכר"
+                                  : "נקבה"}
                               </h3>
                               <h3>{model.phone}</h3>
-                              <h3>{model.city}</h3>
                             </Grid.Column>
                           </Grid>
                         </Segment>
@@ -133,12 +133,8 @@ export const ModelDetailsPage = ({ match, history }) => {
                           <Header as="h2">פרטים נוספים</Header>
                         </Divider>
                         <Segment>
-                          <Table definition stackable textAlign="right">
+                          <Table definition textAlign="right">
                             <Table.Body>
-                              <Table.Row>
-                                <Table.Cell width={2}>שנת לידה</Table.Cell>
-                                <Table.Cell>{model.birthYear}</Table.Cell>
-                              </Table.Row>
                               <Table.Row>
                                 <Table.Cell>גובה</Table.Cell>
                                 <Table.Cell>
@@ -163,12 +159,9 @@ export const ModelDetailsPage = ({ match, history }) => {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
-                </Header>              </Segment>
-
-              <Tab
-                menu={{ attached: true, className: "wrapped" }}
-                panes={panes}
-              />
+                </Header>
+              </Segment>
+              <Tab menu={{ attached: true }} panes={panes} />
             </>
           )}
         </>
