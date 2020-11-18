@@ -1,10 +1,12 @@
+
 import React, { useRef, useState,useEffect } from "react";
 import {
   Icon,
   Form,
   Button,
   Header,
-  Table
+  Table,
+  Segment,
 } from "semantic-ui-react";
 import moment from "moment";
 import { db, storage } from "../../firebase";
@@ -14,24 +16,32 @@ const modelDocsRef = db.collection("models").doc(modelId).collection("documents"
   const [document, setDocument] = useState(null);
   const [documents, setDocuments] = useState([]);
   const [description, setDescription] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [counter, setCounter] = useState(0);
   const fileInput = useRef()
 
   useEffect(() => {
     const getDocuments = async () => {
-      const querySnapshot = await db.collection("models").doc(modelId).collection("documents").get()
-      setDocuments(querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      })))
+      try {
+        const querySnapshot = await db.collection("models").doc(modelId).collection("documents").get()
+        setDocuments(querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+        })));
+      } catch (err) {
+        alert(err);
+      }
+      setLoading(false);
     }
     getDocuments();
-  }, [modelId]);
+  }, [counter, modelId]);
 
   const deleteDocument = async (id) => {
     if (window.confirm("למחוק את המסמך?")) {
+        setLoading(true);
         await await modelDocsRef.doc(id).delete();
-        window.location.reload();
+        setLoading(false);
+        setDocuments(documents.filter(doc => doc.id !== id));
     }
   }
 
@@ -52,7 +62,7 @@ const modelDocsRef = db.collection("models").doc(modelId).collection("documents"
           description: description,
           url,
       });
-      window.location.reload()
+      setCounter(counter + 1);
     } catch (err) {
       console.error(err);
     }
@@ -60,7 +70,7 @@ const modelDocsRef = db.collection("models").doc(modelId).collection("documents"
   };
 
   return (
-    <>
+    <Segment loading={loading}>
         <Header>הוסף מסמך</Header>
         <Form onSubmit={onSubmit}>
           <Form.Group widths="equal">
@@ -74,8 +84,8 @@ const modelDocsRef = db.collection("models").doc(modelId).collection("documents"
                 />
                 <Button
                 color="green"
-                loading={isLoading}
-                disabled={isLoading}
+                loading={loading}
+                disabled={loading}
                 width={5}
             >
                 הוסף מסמך
@@ -100,6 +110,6 @@ const modelDocsRef = db.collection("models").doc(modelId).collection("documents"
                     </Table.Row>)) : <Table.Row><Table.Cell colSpan="3">אין עדיין מסמכים להצגה</Table.Cell></Table.Row>}
             </Table.Body>
         </Table>
-    </>
+    </Segment>
   );
 };
