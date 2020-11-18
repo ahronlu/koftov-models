@@ -1,0 +1,33 @@
+[debug] [2020-11-18T23:35:16.789Z] ----------------------------------------------------------------------
+[debug] [2020-11-18T23:35:16.792Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2020-11-18T23:35:16.793Z] CLI Version:   8.6.0
+[debug] [2020-11-18T23:35:16.793Z] Platform:      linux
+[debug] [2020-11-18T23:35:16.793Z] Node Version:  v14.4.0
+[debug] [2020-11-18T23:35:16.793Z] Time:          Thu Nov 19 2020 01:35:16 GMT+0200 (Israel Standard Time)
+[debug] [2020-11-18T23:35:16.794Z] ----------------------------------------------------------------------
+[debug] [2020-11-18T23:35:16.794Z] 
+[debug] [2020-11-18T23:35:16.804Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-18T23:35:16.804Z] > authorizing via signed-in user
+[debug] [2020-11-18T23:35:16.805Z] [iam] checking project koftov-models for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-11-18T23:35:16.809Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/koftov-models:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-11-18T23:35:17.635Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 18 Nov 2020 23:35:17 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=550","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-18T23:35:17.641Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/koftov-models  
+ 
+[debug] [2020-11-18T23:35:18.014Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 18 Nov 2020 23:35:17 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'koftov-models'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2020-11-18T23:35:18.022Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/koftov-models/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-11-18T23:35:19.499Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 18 Nov 2020 23:35:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[koftov-models]: beginning deploy... 
+[info] i  hosting[koftov-models]: found 40 files in build 
+[debug] [2020-11-18T23:35:20.770Z] [hosting] hash cache [YnVpbGQ] stored for 40 files
+[debug] [2020-11-18T23:35:20.771Z] [hosting][hash queue][FINAL] {"max":1222,"min":99,"avg":180.04999999999998,"active":0,"complete":40,"success":40,"errored":0,"retried":0,"total":40,"elapsed":1240}
+[debug] [2020-11-18T23:35:20.772Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/koftov-models/versions/14d7cbe51c4d8f3f:populateFiles  
+ <request body omitted>
+[debug] [2020-11-18T23:35:21.986Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 18 Nov 2020 23:35:21 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-18T23:35:21.995Z] [hosting][populate queue][FINAL] {"max":1225,"min":1225,"avg":1225,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1231}
+[debug] [2020-11-18T23:35:21.996Z] [hosting] uploads queued: 6
